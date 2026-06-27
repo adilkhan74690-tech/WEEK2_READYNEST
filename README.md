@@ -1,54 +1,8 @@
 # Smart Campus Utility App
 
-A Smart Campus Utility App built for the ReadyNest Summer Internship (Week 2). It helps students and teachers manage daily campus activities in one place.
+A simple Smart Campus Utility App built as part of the ReadyNest Summer Internship Week 2 task.
 
-## Features
-
-- Student, Teacher & Admin Login
-- Admin Approval System
-- Attendance Management
-- Timetable
-- Task Management
-- Notice Board
-- Notes
-- Profile Management
-
-## Tech Stack
-
-- React + Vite
-- Node.js + Express.js
-- MySQL
-- JWT Authentication
-
-## Getting Started
-
-```bash
-npm install
-npm run dev
-```
-
-For backend:
-
-```bash
-cd server
-npm install
-npm start
-```
-
-## Environment Variables
-
-Create a `.env` file inside the `server` folder.
-
-```env
-PORT=5000
-DB_HOST=localhost
-DB_USER=your_username
-DB_PASSWORD=your_password
-DB_NAME=your_database
-JWT_SECRET=your_secret
-```
-
-## Demo Accounts
+## Demo Login
 
 **Admin**
 - Email: admin@campus.com
@@ -62,8 +16,52 @@ JWT_SECRET=your_secret
 - Email: student@campus.com
 - Password: Student@123
 
-> New Student and Teacher accounts require admin approval before login.
+> Student and Teacher accounts require admin approval. The demo accounts above are already approved.
 
----
+## Tech Stack
+
+- React + Vite
+- Node.js
+- Express.js
+- MySQL
+- JWT
+
+## Features
+
+- Login & Authentication
+- Student, Teacher and Admin Panels
+- Attendance
+- Timetable
+- Tasks
+- Notices
+- Notes
+- Profile Management
+
+## Running the Project
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the frontend
+
+```bash
+npm run dev
+```
+
+Start the backend
+
+```bash
+cd server
+npm install
+npm start
+```
+
+Create a `.env` file inside the `server` folder before running the backend.
+
+Built for the ReadyNest Summer Internship.
+
 
 Developed by **Mohammad Adil Khan**
