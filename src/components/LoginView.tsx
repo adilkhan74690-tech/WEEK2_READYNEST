@@ -17,6 +17,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { User as UserType, Role } from '../types';
+import { API_URL } from '../data/dbStore';
 
 interface LoginViewProps {
   users: UserType[];
@@ -156,7 +157,7 @@ export default function LoginView({ users, onLogin, onRegister, onGoogleLogin, e
       }
 
       try {
-        const res = await fetch("https://week2-readynest.onrender.com/api/auth/login", {
+        const res = await fetch(API_URL + "/api/auth/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -169,12 +169,14 @@ export function getDB(): DBStore {
   return db;
 }
 
+export const API_URL = import.meta.env.VITE_API_URL || "https://week2-readynest.onrender.com";
+
 export function saveDB(db: DBStore) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
 
   // Asynchronously sync local updates with MySQL database
   if (typeof window !== "undefined") {
-    fetch("https://week2-readynest.onrender.com/api/db/sync", {
+    fetch(API_URL + "/api/db/sync", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -198,7 +200,7 @@ if (typeof window !== "undefined") {
     if (isSyncing) return;
     isSyncing = true;
     try {
-      const res = await fetch(import.meta.env.VITE_API_URL + "/api/db");
+      const res = await fetch(API_URL + "/api/db");
       if (res.ok) {
         const serverDb = await res.json();
         const localDataStr = localStorage.getItem(STORAGE_KEY);

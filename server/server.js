@@ -9,6 +9,7 @@ const app = express();
 // CORS Configuration
 app.use(cors({
   origin: [
+    "http://localhost:3000",
     "http://localhost:5173",
     "https://smart-campus-readynest.vercel.app"
   ],
