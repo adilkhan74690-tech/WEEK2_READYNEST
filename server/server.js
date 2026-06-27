@@ -4,6 +4,14 @@ require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 const express = require("express");
 const cors = require("cors");
 
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://smart-campus-readynest.vercel.app"
+  ],
+  credentials: true
+}));
+
 const db = require("./config/db");
 
 // Routes
