@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { 
-  GraduationCap, 
-  Shield, 
-  User, 
-  Lock, 
-  Mail, 
-  ChevronRight, 
-  Info, 
-  Check, 
-  HelpCircle, 
-  BookOpen, 
-  Globe, 
-  Phone, 
-  MapPin, 
+import {
+  GraduationCap,
+  Shield,
+  User,
+  Lock,
+  Mail,
+  ChevronRight,
+  Info,
+  Check,
+  HelpCircle,
+  BookOpen,
+  Globe,
+  Phone,
+  MapPin,
   Clock,
   ExternalLink
 } from 'lucide-react';
@@ -147,7 +147,7 @@ export default function LoginView({ users, onLogin, onRegister, onGoogleLogin, e
         setErrorMsg('Please enter your credentials to log in.');
         return;
       }
-      
+
       // Real university role checking and validation helper
       const matched = users.find(u => u.email.toLowerCase() === email.toLowerCase());
       if (matched && matched.role !== role) {
@@ -155,31 +155,31 @@ export default function LoginView({ users, onLogin, onRegister, onGoogleLogin, e
         return;
       }
 
-try {
-  const res = await fetch("http://localhost:5000/api/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-  });
+      try {
+        const res = await fetch("https://week2-readynest.onrender.com/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
 
-  const data = await res.json();
+        const data = await res.json();
 
-  if (data.success) {
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("user", JSON.stringify(data.user));
+        if (data.success) {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
 
-    window.location.reload();
-  } else {
-    setErrorMsg(data.message);
-  }
-} catch (err) {
-  setErrorMsg("Server not responding");
-}
+          window.location.reload();
+        } else {
+          setErrorMsg(data.message);
+        }
+      } catch (err) {
+        setErrorMsg("Server not responding");
+      }
     }
   };
 
@@ -201,7 +201,7 @@ try {
       <div className="hidden lg:flex lg:w-1/2 bg-[#0c1223] border-r border-slate-800/80 p-12 flex-col justify-between relative overflow-hidden">
         {/* Subtle geometric pattern */}
         <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
-        
+
         {/* University Header */}
         <div className="z-10 flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
@@ -260,7 +260,7 @@ try {
       {/* RIGHT COLUMN: The Login Box Container */}
       <div className="flex-1 flex flex-col justify-center items-center p-6 sm:p-12 md:p-16 relative">
         <div className="w-full max-w-md space-y-8">
-          
+
           {/* Logo on Mobile (Hidden on Desktop) */}
           <div className="flex lg:hidden items-center justify-center gap-3 mb-4">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
@@ -293,7 +293,7 @@ try {
 
           {forgotStep === 'none' ? (
             <div className="space-y-6">
-              
+
               {/* Role Selection Segmented Control */}
               <div className="space-y-2">
                 <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest text-center lg:text-left">
@@ -312,11 +312,10 @@ try {
                         key={r.value}
                         type="button"
                         onClick={() => setRole(r.value)}
-                        className={`flex flex-col items-center justify-center py-2.5 px-2 rounded-xl text-[11px] font-bold transition-all gap-1 cursor-pointer select-none ${
-                          isSelected 
-                            ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/10' 
+                        className={`flex flex-col items-center justify-center py-2.5 px-2 rounded-xl text-[11px] font-bold transition-all gap-1 cursor-pointer select-none ${isSelected
+                            ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/10'
                             : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
-                        }`}
+                          }`}
                       >
                         <Icon className={`w-4 h-4 ${isSelected ? 'text-slate-950' : 'text-slate-500'}`} />
                         <span>{r.label}</span>
@@ -328,7 +327,7 @@ try {
 
               {/* Secure Auth Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
-                
+
                 {isRegistering && (
                   <div>
                     <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
@@ -523,9 +522,9 @@ try {
       {showGoogleModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
           <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-slate-200 overflow-hidden text-slate-800 flex flex-col relative">
-            
+
             {/* Close button */}
-            <button 
+            <button
               type="button"
               onClick={() => setShowGoogleModal(false)}
               className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1.5 hover:bg-slate-100 rounded-full transition-colors"
@@ -599,10 +598,10 @@ try {
                           className="w-full flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition-all text-left cursor-pointer"
                         >
                           <div className="flex items-center gap-3">
-                            <img 
-                              src={acc.avatar} 
-                              alt={acc.name} 
-                              className="w-8 h-8 rounded-full object-cover ring-2 ring-slate-100" 
+                            <img
+                              src={acc.avatar}
+                              alt={acc.name}
+                              className="w-8 h-8 rounded-full object-cover ring-2 ring-slate-100"
                               referrerPolicy="no-referrer"
                             />
                             <div>
@@ -610,11 +609,10 @@ try {
                               <p className="text-xs text-slate-500">{acc.email}</p>
                             </div>
                           </div>
-                          <span className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full tracking-wider ${
-                            acc.role === 'ADMIN' ? 'bg-red-50 text-red-700 border border-red-200' :
-                            acc.role === 'TEACHER' ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' :
-                            'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                          }`}>
+                          <span className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full tracking-wider ${acc.role === 'ADMIN' ? 'bg-red-50 text-red-700 border border-red-200' :
+                              acc.role === 'TEACHER' ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' :
+                                'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                            }`}>
                             {acc.role}
                           </span>
                         </button>
@@ -651,7 +649,7 @@ try {
                           autoFocus
                         />
                       </div>
-                      
+
                       <div className="flex gap-2.5 pt-2">
                         <button
                           type="button"
@@ -715,11 +713,10 @@ try {
                           key={r.value}
                           type="button"
                           onClick={() => setGoogleCustomRole(r.value)}
-                          className={`py-2 px-3 rounded-xl text-xs font-bold border transition-all cursor-pointer text-center ${
-                            isSelected 
-                              ? 'bg-emerald-50 border-emerald-500 text-emerald-700 shadow-sm' 
+                          className={`py-2 px-3 rounded-xl text-xs font-bold border transition-all cursor-pointer text-center ${isSelected
+                              ? 'bg-emerald-50 border-emerald-500 text-emerald-700 shadow-sm'
                               : 'bg-slate-50 border-slate-200 text-slate-500 hover:text-slate-800'
-                          }`}
+                            }`}
                         >
                           {r.label}
                         </button>

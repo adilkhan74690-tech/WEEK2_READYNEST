@@ -1,19 +1,19 @@
-import { 
-  User, 
-  Student, 
-  Teacher, 
-  Department, 
-  Course, 
-  Subject, 
-  TimetableSlot, 
-  Attendance, 
-  TeacherAttendance, 
-  Assignment, 
-  AssignmentSubmission, 
-  StudyMaterial, 
-  Notice, 
-  Result, 
-  AcademicSession, 
+import {
+  User,
+  Student,
+  Teacher,
+  Department,
+  Course,
+  Subject,
+  TimetableSlot,
+  Attendance,
+  TeacherAttendance,
+  Assignment,
+  AssignmentSubmission,
+  StudyMaterial,
+  Notice,
+  Result,
+  AcademicSession,
   Note,
   SystemSettings
 } from '../types';
@@ -174,7 +174,7 @@ export function saveDB(db: DBStore) {
 
   // Asynchronously sync local updates with MySQL database
   if (typeof window !== "undefined") {
-    fetch("http://localhost:5000/api/db/sync", {
+    fetch("https://week2-readynest.onrender.com/api/db/sync", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -198,7 +198,7 @@ if (typeof window !== "undefined") {
     if (isSyncing) return;
     isSyncing = true;
     try {
-      const res = await fetch("http://localhost:5000/api/db");
+      const res = await fetch("https://week2-readynest.onrender.com/api/db");
       if (res.ok) {
         const serverDb = await res.json();
         const localDataStr = localStorage.getItem(STORAGE_KEY);
@@ -206,7 +206,7 @@ if (typeof window !== "undefined") {
         if (localDataStr) {
           try {
             localDb = JSON.parse(localDataStr);
-          } catch (e) {}
+          } catch (e) { }
         }
 
         const mergedDb: DBStore = {
