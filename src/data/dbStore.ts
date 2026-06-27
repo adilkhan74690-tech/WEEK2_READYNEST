@@ -198,7 +198,7 @@ if (typeof window !== "undefined") {
     if (isSyncing) return;
     isSyncing = true;
     try {
-      const res = await fetch("https://week2-readynest.onrender.com/api/db");
+      const res = await fetch(import.meta.env.VITE_API_URL + "/api/db");
       if (res.ok) {
         const serverDb = await res.json();
         const localDataStr = localStorage.getItem(STORAGE_KEY);
