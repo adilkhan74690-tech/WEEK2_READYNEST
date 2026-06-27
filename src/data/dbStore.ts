@@ -169,7 +169,14 @@ export function getDB(): DBStore {
   return db;
 }
 
-export const API_URL = import.meta.env.VITE_API_URL || "https://week2-readynest.onrender.com";
+let apiUrl = import.meta.env.VITE_API_URL || "https://week2-readynest.onrender.com";
+if (apiUrl.includes("rlwy.net") || apiUrl.includes("proxy") || apiUrl.includes("49140")) {
+  apiUrl = "https://week2-readynest.onrender.com";
+}
+if (apiUrl.endsWith("/")) {
+  apiUrl = apiUrl.slice(0, -1);
+}
+export const API_URL = apiUrl;
 
 export function saveDB(db: DBStore) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
