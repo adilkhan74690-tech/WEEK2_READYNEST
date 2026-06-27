@@ -4,6 +4,9 @@ require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 const express = require("express");
 const cors = require("cors");
 
+const app = express();
+
+// CORS Configuration
 app.use(cors({
   origin: [
     "http://localhost:5173",
@@ -11,6 +14,8 @@ app.use(cors({
   ],
   credentials: true
 }));
+
+app.use(express.json());
 
 const db = require("./config/db");
 
@@ -22,10 +27,13 @@ const noticeRoutes = require("./routes/noticeRoutes");
 const studentRoutes = require("./routes/studentRoutes");
 const teacherRoutes = require("./routes/teacherRoutes");
 
-const app = express();
-
-app.use(cors());
-app.use(express.json());
+// Bind Domain Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/attendance", attendanceRoutes);
+app.use("/api/notices", noticeRoutes);
+app.use("/api/students", studentRoutes);
+app.use("/api/teachers", teacherRoutes);
 
 // Bind Domain Routes
 app.use("/api/auth", authRoutes);
